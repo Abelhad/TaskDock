@@ -1,5 +1,8 @@
 <x-guest-layout>
-
+    <div class="formtitle">
+        <h2>Create an Account</h2>
+        <p>Join our platform in seconds</p>
+    </div>
     <form method="POST" action="{{ route('register') }}" class="register-form">
         @csrf
 
