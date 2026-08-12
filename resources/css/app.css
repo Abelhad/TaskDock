@@ -191,7 +191,7 @@ body {
   --text-main: #0f172a;
   --text-muted: #64748b;
   --border-color: #f1f5f9;
-  --radius-outer: 28px;
+  --radius-outer: 10px;
   --radius-inner: 16px;
   --radius-pill: 9999px;
   --shadow-main: 0 25px 60px -15px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.1);
@@ -292,6 +292,7 @@ body {
   flex-direction: column;
   background: var(--main-content-bg);
   min-width: 0;
+  max-height: 95vh;
 }
 
 .header {
@@ -396,4 +397,270 @@ body {
   .content {
     padding: 20px;
   }
+}
+#titleColor{
+    color: #059669;
+}
+
+
+.adminForm {
+  width: 100%;
+  max-width: 400px;
+  margin: 24px auto;
+  padding: 20px 22px;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #d6ebe5;
+
+  box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.adminForm:hover {
+  box-shadow: 0 12px 28px -4px rgba(15, 23, 42, 0.1);
+}
+
+/* Form Headings */
+.adminForm h2, 
+.adminForm h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 2px;
+  letter-spacing: -0.01em;
+}
+.adminForm h3{
+  opacity: 0.7;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.adminForm p.form-subtitle {
+  font-size: 0.78rem;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+/* Field Labels */
+.adminForm label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+/* Input Group Container */
+.adminForm .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Compact Inputs, Selects & Textareas */
+.adminForm input[type="text"],
+.adminForm input[type="email"],
+.adminForm input[type="password"],
+.adminForm input[type="number"],
+.adminForm select,
+.adminForm textarea {
+  width: 100%;
+  padding: 8px 12px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: #0f172a;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.adminForm input:hover,
+.adminForm select:hover,
+.adminForm textarea:hover {
+  background-color: #ffffff;
+  border-color: #cbd5e1;
+}
+
+/* Focus Ring */
+.adminForm input:focus,
+.adminForm select:focus,
+.adminForm textarea:focus {
+  background-color: #ffffff;
+  border-color: rgb(5, 150, 105);
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.12);
+}
+
+/* Submit Button */
+.adminForm button[type="submit"],
+.adminForm .btn-submit {
+  width: 100%;
+  margin-top: 4px;
+  padding: 9px 16px;
+  background: rgb(5, 150, 105);
+  color: #ffffff;
+  border: none;
+  border-radius: 9999px;
+  font-size: 0.825rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.2);
+}
+
+.adminForm button[type="submit"]:hover,
+.adminForm .btn-submit:hover {
+  background: rgb(15, 118, 110);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+}
+
+.adminForm button[type="submit"]:active,
+.adminForm .btn-submit:active {
+  transform: translateY(0);
+}
+.adminFormContentSection{
+  width: 550px;
+}
+
+/* ==========================================================================
+   Users Created Content Component (.usersCreatedContent)
+   ========================================================================== */
+
+/* Main Card Container */
+.usersCreatedContent {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid #d6ebe5;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+  margin-top: 24px;
+}
+
+/* Header Bar (Title + Action Link) */
+.usersCreatedContent > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.usersCreatedContent h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+/* "Add Users" Button */
+.usersCreatedContent > div > a {
+  background: rgb(5, 150, 105);
+  color: #ffffff;
+  padding: 8px 18px;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(5, 150, 105, 0.25);
+}
+
+.usersCreatedContent > div > a:hover {
+  background: rgb(15, 118, 110);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.35);
+}
+
+/* Flat, Borderless Table (Matching Reference Picture) */
+.usersCreatedContent table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 4px;
+}
+
+/* Uppercase Grey Table Headers with Top & Bottom Dividers */
+.usersCreatedContent th {
+  background: transparent;
+  color: #94a3b8;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  padding: 12px 16px;
+  border-top: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
+  text-align: left;
+}
+
+/* Clean Row Padding & Bottom Border */
+.usersCreatedContent td {
+  padding: 16px;
+  font-size: 0.875rem;
+  color: #0f172a;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+.usersCreatedContent tr:last-child td {
+  border-bottom: none;
+}
+
+.usersCreatedContent tbody tr:hover td {
+  background-color: #f8fafc;
+}
+
+/* Action Column & Buttons */
+.usersCreatedContent td:last-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.usersCreatedContent td:last-child a {
+  color: rgb(5, 150, 105);
+  background: rgba(5, 150, 105, 0.08);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.825rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.usersCreatedContent td:last-child a:hover {
+  background: rgba(5, 150, 105, 0.18);
+  color: rgb(15, 118, 110);
+}
+
+.usersCreatedContent form {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+.usersCreatedContent form button {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.825rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.usersCreatedContent form button:hover {
+  background: #dc2626;
+  color: #ffffff;
+  border-color: #dc2626;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.25);
 }

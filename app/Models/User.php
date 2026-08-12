@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'created_by',
     ];
 
     /**
@@ -53,5 +54,9 @@ class User extends Authenticatable
 
     public function assignedTasks(){
         return $this->hasMany(Task::class, 'assigned_to');
+    }
+
+    public function createdUsers(){
+        return $this->hasMany(User::class, 'created_by');
     }
 }

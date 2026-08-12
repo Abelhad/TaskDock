@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
@@ -18,6 +19,8 @@
                 </a>
                 <a href="">Projects</a>
                 <a href="">Tasks</a>
+                <a href=" {{ route('adminspace.create') }} " class="{{ request()->routeIs('adminspace.create') ? 'active' : '' }}">Add Users</a>
+                <a href=" {{ route('adminspace.index') }} " class="{{ request()->routeIs('adminspace.index') ? 'active' : '' }}">Users</a>
             </div>
         </div>
         <div class="rightSide">
@@ -25,7 +28,7 @@
                 <button>logout</button>
             </div>
             <div class="content">
-                <h2>TaskDock > @yield('page-title')</h2>
+                <h2>TaskDock <span id="titleColor">> @yield('page-title')</span></h2>
                 @yield('content')
             </div>
         </div>
