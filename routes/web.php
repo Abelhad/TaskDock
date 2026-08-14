@@ -36,7 +36,7 @@ require __DIR__.'/auth.php';
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/projects', [ProjectController::class, 'index'])->middleware('auth')->name('projects.index');
-Route::get('/projects/create', [ProfileController::class, 'create'])->middleware('auth')->name('projects.create');
+Route::get('/projects/create', [ProjectController::class, 'create'])->middleware('auth')->name('projects.create');
 Route::post('/projects', [ProjectController::class, 'store'])->middleware('auth')->name('projects.store');
 
 Route::get('/adminspace', [AdminCreatedUserController::class, 'index'])->middleware('auth')->name('adminspace.index');

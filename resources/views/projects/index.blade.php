@@ -3,5 +3,5 @@
 
 @section('content')
     <a href="{{ route('projects.create') }}">Add Project</a>
-    <h2>projects list</h2>
+    <h3>Project list</h3>
 @endsection

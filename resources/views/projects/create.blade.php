@@ -8,92 +8,73 @@
         <form action="{{ route('projects.store') }}" method="post">
             @csrf
     
-            <!-- Name -->
             <div class="form-group">
-                <x-input-label for="name" :value="__('Name')" class="form-label" />
-    
+                <x-input-label for="title" :value="__('Title')" class="form-label" />
+
                 <x-text-input
-                    id="name"
+                    id="title"
                     class="form-input"
                     type="text"
-                    name="name"
-                    :value="old('name')"
+                    name="title"
+                    :value="old('title')"
                     required
                     autofocus
-                    autocomplete="name"
                 />
-    
+
                 <x-input-error
-                    :messages="$errors->get('name')"
+                    :messages="$errors->get('title')"
                     class="form-error"
                 />
             </div>
-    
-            <!-- Email -->
+
+            <!-- Description -->
             <div class="form-group">
-                <x-input-label for="email" :value="__('Email')" class="form-label" />
-    
-                <x-text-input
-                    id="email"
+                <x-input-label for="description" :value="__('Description')" class="form-label" />
+
+                <textarea
+                    id="description"
                     class="form-input"
-                    type="email"
-                    name="email"
-                    :value="old('email')"
-                    required
-                    autocomplete="username"
-                />
-    
+                    name="description"
+                    rows="4"
+                >{{ old('description') }}</textarea>
+
                 <x-input-error
-                    :messages="$errors->get('email')"
+                    :messages="$errors->get('description')"
                     class="form-error"
                 />
             </div>
-    
-            <!-- Password -->
+
+            <!-- Status -->
             <div class="form-group">
-                <x-input-label for="password" :value="__('Password')" class="form-label" />
-    
-                <x-text-input
-                    id="password"
+                <x-input-label for="status" :value="__('Status')" class="form-label" />
+
+                <select
+                    id="status"
+                    name="status"
                     class="form-input"
-                    type="password"
-                    name="password"
-                    required
-                    autocomplete="new-password"
-                />
-    
+                >
+                    <option value="active" {{ old('status', 'active') === 'active' ? 'selected' : '' }}>
+                        Active
+                    </option>
+
+                    <option value="completed" {{ old('status') === 'completed' ? 'selected' : '' }}>
+                        Completed
+                    </option>
+
+                    <option value="archived" {{ old('status') === 'archived' ? 'selected' : '' }}>
+                        Archived
+                    </option>
+                </select>
+
                 <x-input-error
-                    :messages="$errors->get('password')"
+                    :messages="$errors->get('status')"
                     class="form-error"
                 />
             </div>
-    
-            <!-- Confirm Password -->
-            <div class="form-group">
-                <x-input-label
-                    for="password_confirmation"
-                    :value="__('Confirm Password')"
-                    class="form-label"
-                />
-    
-                <x-text-input
-                    id="password_confirmation"
-                    class="form-input"
-                    type="password"
-                    name="password_confirmation"
-                    required
-                    autocomplete="new-password"
-                />
-    
-                <x-input-error
-                    :messages="$errors->get('password_confirmation')"
-                    class="form-error"
-                />
-            </div>
-    
+
             <!-- Actions -->
             <div class="form-actions">
-                <button type="submit" class="register-button">Create User</button>
+                <button type="submit" class="register-button">Create Project</button>
             </div>
     
         

@@ -17,7 +17,7 @@
                 <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
                     Dashboard
                 </a>
-                <a href="">Projects</a>
+                <a href=" {{ route('projects.index') }} " class="{{ request()->routeIs('projects.index') ? 'active' : '' }}">Projects</a>
                 <a href="">Tasks</a>
                 <a href=" {{ route('adminspace.create') }} " class="{{ request()->routeIs('adminspace.create') ? 'active' : '' }}">Add Users</a>
                 <a href=" {{ route('adminspace.index') }} " class="{{ request()->routeIs('adminspace.index') ? 'active' : '' }}">Users</a>
