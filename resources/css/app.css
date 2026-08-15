@@ -509,6 +509,130 @@ body {
   width: 550px;
 }
 
+/* ==========================================================================
+   Table Action Buttons & Project Status Badges (Safely Scoped)
+   ========================================================================== */
+
+/* 1. Action Buttons Container */
+table td:last-child {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* 2. "Modify" Link Badge (Emerald) */
+table td:last-child a:first-of-type {
+  display: inline-flex;
+  align-items: center;
+  color: rgb(5, 150, 105);
+  background: rgba(5, 150, 105, 0.08);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.825rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+table td:last-child a:first-of-type:hover {
+  background: rgba(5, 150, 105, 0.18);
+  color: rgb(15, 118, 110);
+}
+
+/* 3. "Delete" Form & Button (Red) */
+table form {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+table form button {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.825rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+table form button:hover {
+  background: #dc2626;
+  color: #ffffff;
+  border-color: #dc2626;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.25);
+}
+
+/* 4. "Assign Users" Button (Indigo / Modern Accent) */
+table td:last-child a:nth-of-type(2),
+table td:last-child a:last-child:not(:first-child) {
+  display: inline-flex;
+  align-items: center;
+  color: #4f46e5;
+  background: rgba(79, 70, 229, 0.08);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.825rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+table td:last-child a:nth-of-type(2):hover,
+table td:last-child a:last-child:not(:first-child):hover {
+  background: rgba(79, 70, 229, 0.18);
+  color: #3730a3;
+}
+
+/* 5. Project Status Badges (Scoped specifically to tables to avoid sidebar conflicts) */
+table td .status-active,
+table td .status-completed,
+table td .status-archived,
+table td .badge-active,
+table td .badge-completed,
+table td .badge-archived,
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+  width: fit-content;
+}
+
+/* Active (Clean Blue) */
+table td .status-active,
+table td .badge-active {
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #dbeafe;
+}
+
+/* Completed (Fresh Emerald) */
+table td .status-completed,
+table td .badge-completed {
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+/* Archived (Minimal Slate/Muted) */
+table td .status-archived,
+table td .badge-archived {
+  background: #f1f5f9;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+}
+
 
 .usersCreatedContent {
   background: #ffffff;
@@ -656,8 +780,10 @@ body {
   line-height: 1.5;
 }
 
-/* --- Create Project Button --- */
-.addProjectBtn {
+
+/* --- Create Project / Add User Button --- */
+.addProjectBtn,
+.addUserBtn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -674,18 +800,21 @@ body {
   white-space: nowrap;
 }
 
-.addProjectBtn:hover {
+.addProjectBtn:hover,
+.addUserBtn:hover {
   background-color: rgb(4, 120, 87);
   box-shadow: 0 6px 16px rgba(5, 150, 105, 0.35);
   transform: translateY(-1px);
 }
 
-.addProjectBtn:active {
+.addProjectBtn:active,
+.addUserBtn:active {
   transform: translateY(0);
 }
 
+
 /* --- Statistics Row (All Cards in One Line) --- */
-.projectStats {
+.projectStats, .userStats {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -693,6 +822,7 @@ body {
   width: 100%;
   box-sizing: border-box;
 }
+
 
 /* --- Individual Stat Card --- */
 .statCard {
@@ -724,7 +854,9 @@ body {
 .statCard:hover {
   transform: translateY(-3px);
   border-color: rgba(5, 150, 105, 0.4);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 0 15px -3px rgba(5, 150, 105, 0.2);
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.4),
+    0 0 15px -3px rgba(5, 150, 105, 0.2);
 }
 
 .statCard:hover::before {
@@ -757,23 +889,107 @@ body {
   line-height: 1.4;
 }
 
+
 /* --- Responsive Fallback for Mobile Devices --- */
 @media (max-width: 768px) {
-  .projectStats {
+  .projectStats, .userStats {
     flex-wrap: wrap;
   }
+
   .statCard {
     flex: 1 1 calc(50% - 10px);
     min-width: 140px;
   }
+
   .pageHeader {
     flex-direction: column;
     align-items: flex-start;
   }
 }
 
+
 @media (max-width: 480px) {
   .statCard {
     flex: 1 1 100%;
   }
+}
+
+/* ==========================================================================
+   Clean User Assignment Checkbox List (.userCheckboxList)
+   ========================================================================== */
+
+.userCheckboxList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 220px;
+  overflow-y: auto;
+  padding: 4px;
+}
+
+/* Individual User Option Card */
+.userCheckboxList > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #0f172a;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+/* Hover effect */
+.userCheckboxList > div:hover {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+}
+
+/* Highlighted state when checked */
+.userCheckboxList > div:has(input:checked) {
+  background: #f0fdf4;
+  border-color: #a7f3d0;
+  color: #065f46;
+  font-weight: 600;
+}
+
+/* Modern Emerald Checkbox */
+.userCheckboxList input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 5px;
+  background-color: #ffffff;
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+  transition: all 0.15s ease;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.userCheckboxList input[type="checkbox"]:hover {
+  border-color: rgb(5, 150, 105);
+}
+
+.userCheckboxList input[type="checkbox"]:checked {
+  background-color: rgb(5, 150, 105);
+  border-color: rgb(5, 150, 105);
+}
+
+.userCheckboxList input[type="checkbox"]:checked::before {
+  content: "";
+  width: 9px;
+  height: 5px;
+  border-left: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  transform: rotate(-45deg) translate(1px, -1px);
 }

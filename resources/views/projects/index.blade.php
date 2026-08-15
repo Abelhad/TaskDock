@@ -16,7 +16,7 @@
             </a>
         </div>
 
-        {{-- Statistics --}}
+       
         <div class="projectStats">
 
             <div class="statCard">
@@ -62,12 +62,15 @@
                         <td>{{ $project->id }}</td>
                         <td> {{ $project->title }} </td>
                         <td> {{ $project->description }} </td>
-                        <td> {{ $project->status }} </td>
+                        <td>
+                            <span class="status-{{ strtolower($project->status) }}">{{ $project->status }}</span>
+                        </td>
                         <td>
                             <a href="">Modify</a>
                             <form action="" method="post">
                                 <button type="submit">Delete</button>
                             </form>
+                            <a href="{{ route('projectuser.create', $project) }}" >assign users</a>
                         </td>
                     </tr>
                 @endforeach

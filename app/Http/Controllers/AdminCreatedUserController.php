@@ -17,7 +17,19 @@ class AdminCreatedUserController extends Controller
     {
         //
         $users = auth()->user()->createdUsers;
-        return view('adminspace.index', compact('users'));
+        $usersWithProjects = 0;
+        $usersWithNoProjects = 0;
+        foreach($users as $user){
+            if($user->teamProjects->isEmpty()){
+                    $usersWithNoProjects++ ;
+            }
+            else{
+                    $usersWithProjects++ ;
+            }
+        }
+
+
+        return view('adminspace.index', compact('users', 'usersWithNoProjects', 'usersWithProjects'));
     }
 
     /**
