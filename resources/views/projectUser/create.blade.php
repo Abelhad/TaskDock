@@ -5,7 +5,7 @@
     <div class="adminForm">
         <h2>Link user to {{ $project->title }}</h2>
         <h3>Add users to the project and start collaborating</h3>
-        <form action="{{ route('projectuser.store') }}" method="post">
+        <form action="{{ route('projectuser.store', ['project' => $project->id]) }}" method="post">
             @csrf
 
             <div class="form-group">
@@ -15,7 +15,7 @@
                         @if(!$project->members->contains($user))
                         <div>
                             <input type="checkbox" 
-                            name="projects[]"
+                            name="users[]"
                             value="{{ $user->id }}"
                             >
                             {{ $user->name }}

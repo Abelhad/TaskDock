@@ -70,7 +70,7 @@
                             <form action="" method="post">
                                 <button type="submit">Delete</button>
                             </form>
-                            <a href="{{ route('projectuser.create', $project) }}" >assign users</a>
+                            <a href="{{ route('projectuser.create', ['project' => $project->id]) }}" >assign users</a>
                         </td>
                     </tr>
                 @endforeach

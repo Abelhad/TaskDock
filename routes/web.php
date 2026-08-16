@@ -44,5 +44,7 @@ Route::get('/adminspace', [AdminCreatedUserController::class, 'index'])->middlew
 Route::get('/adminspace/create', [AdminCreatedUserController::class, 'create'])->middleware('auth')->name('adminspace.create');
 Route::post('/adminspace', [AdminCreatedUserController::class, 'store'])->middleware('auth')->name('adminspace.store');
 
-Route::get('/projectuser/create', [ProjectUserController::class, 'create'])->middleware('auth')->name('projectuser.create');
-Route::post('/projectuser', [ProjectUserController::class, 'store'])->middleware('auth')->name('projectuser.store');
+Route::get('/projectuser/{project}/create', [ProjectUserController::class, 'create'])->middleware('auth')->name('projectuser.create');
+Route::post('/projectuser/{project}', [ProjectUserController::class, 'store'])
+    ->middleware('auth')
+    ->name('projectuser.store');
