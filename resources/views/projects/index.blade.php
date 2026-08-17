@@ -2,21 +2,19 @@
 @section('page-title', 'Projects')
 
 @section('content')
-    @if($projects->isEmpty())
-        <h3>No Projects Created</h3>
-    @else
-        {{-- Page Header --}}
-        <div class="pageHeader">
-            <div>
-                <p>Manage and keep track of all the projects you created.</p>
-            </div>
-
-            <a href="{{ route('projects.create') }}" class="addProjectBtn">
-                + Create Project
-            </a>
+    {{-- Page Header --}}
+    <div class="pageHeader">
+        <div>
+            <p>Manage and keep track of all the projects you created.</p>
         </div>
 
-       
+        <a href="{{ route('projects.create') }}" class="addProjectBtn">
+            + Create Project
+        </a>
+    </div>
+    @if($projects->isEmpty())
+        <h3>No Projects Created yet</h3>
+    @else
         <div class="projectStats">
 
             <div class="statCard">

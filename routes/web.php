@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectUserController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,3 +49,7 @@ Route::get('/projectuser/{project}/create', [ProjectUserController::class, 'crea
 Route::post('/projectuser/{project}', [ProjectUserController::class, 'store'])
     ->middleware('auth')
     ->name('projectuser.store');
+
+Route::get('/tasks', [TaskController::class, 'index'])->middleware('auth')->name('tasks.index');
+Route::get('/tasks.create', [TaskController::class, 'create'])->middleware('auth')->name('tasks.create');
+Route::post('tasks.store', [TaskController::class, 'store'])->middleware('auth')->name('tasks.store');
