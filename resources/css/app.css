@@ -590,13 +590,13 @@ table td:last-child a:last-child:not(:first-child):hover {
   color: #3730a3;
 }
 
-/* 5. Project Status Badges (Scoped specifically to tables to avoid sidebar conflicts) */
-table td .status-active,
-table td .status-completed,
-table td .status-archived,
-table td .badge-active,
-table td .badge-completed,
-table td .badge-archived,
+/* ==========================================================================
+   Table Badges: Status & Priority Badges (All Mappings)
+   ========================================================================== */
+
+/* Base Badge Style */
+table td [class*="status-"],
+table td [class*="badge-"],
 .status-badge {
   display: inline-flex;
   align-items: center;
@@ -609,15 +609,17 @@ table td .badge-archived,
   width: fit-content;
 }
 
-/* Active (Clean Blue) */
+/* --- Active & Pending (Clean Blue) --- */
 table td .status-active,
-table td .badge-active {
+table td .status-pending,
+table td .badge-active,
+table td .badge-pending {
   background: #eff6ff;
   color: #2563eb;
   border: 1px solid #dbeafe;
 }
 
-/* Completed (Fresh Emerald) */
+/* --- Completed (Fresh Emerald) --- */
 table td .status-completed,
 table td .badge-completed {
   background: #ecfdf5;
@@ -625,14 +627,40 @@ table td .badge-completed {
   border: 1px solid #a7f3d0;
 }
 
-/* Archived (Minimal Slate/Muted) */
+/* --- In Progress & Archived (Minimal Slate / Muted) --- */
+table td .status-in_progress,
+table td .status-in-progress,
 table td .status-archived,
+table td .badge-in_progress,
+table td .badge-in-progress,
 table td .badge-archived {
   background: #f1f5f9;
   color: #64748b;
   border: 1px solid #e2e8f0;
 }
 
+/* --- Task Priorities --- */
+
+/* Low Priority (Subtle Slate) */
+table td .status-low {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+/* Medium Priority (Warm Amber/Orange) */
+table td .status-medium {
+  background: #fffbeb;
+  color: #d97706;
+  border: 1px solid #fde68a;
+}
+
+/* High Priority (Soft Red/Rose) */
+table td .status-high {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
 
 .usersCreatedContent {
   background: #ffffff;
