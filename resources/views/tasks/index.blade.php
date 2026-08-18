@@ -8,7 +8,7 @@
             <p>Manage and keep track of all the projects you created.</p>
         </div>
 
-        <a href="" class="addProjectBtn">
+        <a href="{{ route('tasks.create') }}" class="addProjectBtn">
             + Create Project
         </a>
     </div>
