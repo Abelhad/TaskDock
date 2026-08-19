@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('page-title', 'Tasks')
+@section('page-title', 'My Tasks')
 
 @section('content')
 
@@ -21,19 +21,19 @@
             <div class="statCard">
                 <span class="statTitle">Total Tasks</span>
                 <h3>{{ $tasks->count() }}</h3>
-                <p>All your Tasks created</p>
+                <p>All your Tasks</p>
             </div>
 
             <div class="statCard">
-                <span class="statTitle">Assigned Tasks</span>
-                <h3>{{ $tasks->whereNotNull('assigned_to')->count() }}</h3>
-                <p>Tasks assigned to a team member</p>
+                <span class="statTitle">Overdue Tasks</span>
+                <h3>{{ $overdueTasks }}</h3>
+                <p>Tasks past their due date</p>
             </div>
 
             <div class="statCard">
-                <span class="statTitle">Unassigned Tasks</span>
-                <h3>{{ $tasks->whereNull('assigned_to')->count() }}</h3>
-                <p>Tasks waiting to be assigned</p>
+                <span class="statTitle">Upcoming Tasks</span>
+                <h3>{{ $upcomingTasks }}</h3>
+                <p>Tasks that still need to be completed</p>
             </div>
 
 
@@ -41,7 +41,7 @@
 
         <div class="usersCreatedContent">
             <div>
-                <h3>The Tasks You Created</h3>
+                <h3>Your Tasks</h3>
                 <a href=" {{ route('tasks.create') }} ">Add Tasks</a>
             </div>
             <table>
@@ -49,7 +49,6 @@
                     <th>title</th>
                     <th>description</th>
                     <th>project</th>
-                    <th>assigned to</th>
                     <th>due date</th>
                     <th>priority</th>
                     <th>status</th>
@@ -60,13 +59,6 @@
                         <td> {{ $task->title }} </td>
                         <td> {{ $task->description }} </td>
                         <td> {{ $task->project->title }} </td>
-                        <td>
-                            @if($task->assignee)
-                                {{ $task->assignee->name }}
-                            @else
-                                --
-                            @endif
-                        </td>
                         <td>
                             {{ $task->due_date ?? '--' }}
                         </td>

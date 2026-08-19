@@ -19,7 +19,7 @@
                 </a>
                 <a href=" {{ route('projects.index') }} " class="{{ request()->routeIs('projects.index') ? 'active' : '' }}">Projects</a>
                 <a href=" {{ route('tasks.index') }} " class="{{ request()->routeIs('tasks.index') ? 'active' : '' }}">All Tasks</a>
-                <a href="">My Tasks</a>
+                <a href=" {{ route('tasks.mytasks') }} " class="{{ request()->routeIs('tasks.mytasks') ? 'active' : '' }}">My Tasks</a>
                 <a href=" {{ route('adminspace.create') }} " class="{{ request()->routeIs('adminspace.create') ? 'active' : '' }}">Add Users</a>
                 <a href=" {{ route('adminspace.index') }} " class="{{ request()->routeIs('adminspace.index') ? 'active' : '' }}">Users</a>
             </div>

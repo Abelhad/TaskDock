@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -15,6 +16,19 @@ class TaskController extends Controller
         //
         $tasks = auth()->user()->allTasksCreated;
         return view('tasks.index', compact('tasks'));
+    }
+
+    public function myTasks(){
+        $tasks = auth()->user()->assignedTasks;
+        $overdueTasks = $tasks->where('due_date', '<', Carbon::today())
+                          ->where('status', '!=', 'completed')
+                          ->count();
+
+        $upcomingTasks = $tasks->where('due_date', '>=', Carbon::today())
+                           ->where('status', '!=', 'completed')
+                           ->count();
+
+        return view('tasks.mytasks', compact('tasks', 'overdueTasks', 'upcomingTasks'));
     }
 
     /**
