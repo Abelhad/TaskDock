@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -12,7 +13,17 @@ class DashboardController extends Controller
     public function index()
     {
         //
-        return view('dashboard.index');
+        $myTasks = auth()->user()->assignedTasks;
+        if(auth()->user()->role == 'admin'){
+            $users = auth()->user()->createdUsers;
+            $projects = auth()->user()->projects;
+            $allTasksCreated = auth()->user()->allTasksCreated;
+            return view('dashboard.index', compact('users', 'projects', 'allTasksCreated', 'myTasks'));
+        }else{
+            $projectsUserBelongsTo = auth()->user()->teamProjects;
+            $overdueTasks = $myTasks->where('due_date', '<' , Carbon::today())->where('status', '!==', 'completed')->count();
+            return view('dashboard.index', compact('myTasks', 'projectsUserBelongsTo', 'overdueTasks'));
+        }
     }
 
     /**
