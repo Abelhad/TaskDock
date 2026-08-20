@@ -12,32 +12,34 @@
             + Create Task
         </a>
     </div>
+    
+    <div class="projectStats">
 
-    @if($tasks->isEmpty())
-        <h3>No Tasks Created yet</h3>
-    @else
-        <div class="projectStats">
-
-            <div class="statCard">
-                <span class="statTitle">Total Tasks</span>
-                <h3>{{ $tasks->count() }}</h3>
-                <p>All your Tasks</p>
-            </div>
-
-            <div class="statCard">
-                <span class="statTitle">Overdue Tasks</span>
-                <h3>{{ $overdueTasks }}</h3>
-                <p>Tasks past their due date</p>
-            </div>
-
-            <div class="statCard">
-                <span class="statTitle">Upcoming Tasks</span>
-                <h3>{{ $upcomingTasks }}</h3>
-                <p>Tasks that still need to be completed</p>
-            </div>
-
-
+        <div class="statCard">
+            <span class="statTitle">Total Tasks</span>
+            <h3>{{ $tasks->count() }}</h3>
+            <p>All your Tasks</p>
         </div>
+
+        <div class="statCard">
+            <span class="statTitle">Overdue Tasks</span>
+            <h3>{{ $overdueTasks }}</h3>
+            <p>Tasks past their due date</p>
+        </div>
+
+        <div class="statCard">
+            <span class="statTitle">Upcoming Tasks</span>
+            <h3>{{ $upcomingTasks }}</h3>
+            <p>Tasks that still need to be completed</p>
+        </div>
+
+
+    </div>
+    @if($tasks->isEmpty())
+        <div class="noData">
+            <h3>No Tasks assigned to you yet</h3>
+        </div>
+    @else
 
         <div class="usersCreatedContent">
             <div>
@@ -77,6 +79,11 @@
                     </tr>
                 @endforeach
             </table>
+        </div>
+    @endif
+    @if(session('error'))
+        <div class="alert">
+            {{ session('error') }}
         </div>
     @endif
 

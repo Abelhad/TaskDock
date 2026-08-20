@@ -11,7 +11,7 @@
     <div class="dashContainer">
         <div class="sidebar">
             <div class="logo">
-                <img src="{{ asset('oldtaskdock-logo.png') }}" alt="TaskDock">
+                <img src="{{ asset('taskdock-logo-updated.png') }}" alt="TaskDock">
             </div>
             <div>
                 <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">

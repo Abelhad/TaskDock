@@ -509,11 +509,7 @@ body {
   width: 550px;
 }
 
-/* ==========================================================================
-   Table Action Buttons & Project Status Badges (Safely Scoped)
-   ========================================================================== */
 
-/* 1. Action Buttons Container */
 table td:last-child {
   display: flex;
   align-items: center;
@@ -521,7 +517,6 @@ table td:last-child {
   flex-wrap: wrap;
 }
 
-/* 2. "Modify" Link Badge (Emerald) */
 table td:last-child a:first-of-type {
   display: inline-flex;
   align-items: center;
@@ -590,11 +585,7 @@ table td:last-child a:last-child:not(:first-child):hover {
   color: #3730a3;
 }
 
-/* ==========================================================================
-   Table Badges: Status & Priority Badges (All Mappings)
-   ========================================================================== */
 
-/* Base Badge Style */
 table td [class*="status-"],
 table td [class*="badge-"],
 .status-badge {
@@ -609,7 +600,6 @@ table td [class*="badge-"],
   width: fit-content;
 }
 
-/* --- Active & Pending (Clean Blue) --- */
 table td .status-active,
 table td .status-pending,
 table td .badge-active,
@@ -619,7 +609,6 @@ table td .badge-pending {
   border: 1px solid #dbeafe;
 }
 
-/* --- Completed (Fresh Emerald) --- */
 table td .status-completed,
 table td .badge-completed {
   background: #ecfdf5;
@@ -627,7 +616,6 @@ table td .badge-completed {
   border: 1px solid #a7f3d0;
 }
 
-/* --- In Progress & Archived (Minimal Slate / Muted) --- */
 table td .status-in_progress,
 table td .status-in-progress,
 table td .status-archived,
@@ -639,23 +627,19 @@ table td .badge-archived {
   border: 1px solid #e2e8f0;
 }
 
-/* --- Task Priorities --- */
 
-/* Low Priority (Subtle Slate) */
 table td .status-low {
   background: #f1f5f9;
   color: #475569;
   border: 1px solid #e2e8f0;
 }
 
-/* Medium Priority (Warm Amber/Orange) */
 table td .status-medium {
   background: #fffbeb;
   color: #d97706;
   border: 1px solid #fde68a;
 }
 
-/* High Priority (Soft Red/Rose) */
 table td .status-high {
   background: #fef2f2;
   color: #dc2626;
@@ -742,7 +726,6 @@ table td .status-high {
   background-color: #f8fafc;
 }
 
-/* Action Column & Buttons */
 .usersCreatedContent td:last-child {
   display: flex;
   align-items: center;
@@ -809,7 +792,6 @@ table td .status-high {
 }
 
 
-/* --- Create Project / Add User Button --- */
 .addProjectBtn,
 .addUserBtn {
   display: inline-flex;
@@ -841,7 +823,6 @@ table td .status-high {
 }
 
 
-/* --- Statistics Row (All Cards in One Line) --- */
 .projectStats, .userStats {
   display: flex;
   flex-direction: row;
@@ -852,7 +833,6 @@ table td .status-high {
 }
 
 
-/* --- Individual Stat Card --- */
 .statCard {
   flex: 1 1 0px;
   min-width: 0;
@@ -918,7 +898,6 @@ table td .status-high {
 }
 
 
-/* --- Responsive Fallback for Mobile Devices --- */
 @media (max-width: 768px) {
   .projectStats, .userStats {
     flex-wrap: wrap;
@@ -941,11 +920,6 @@ table td .status-high {
     flex: 1 1 100%;
   }
 }
-
-/* ==========================================================================
-   Clean User Assignment Checkbox List (.userCheckboxList)
-   ========================================================================== */
-
 .userCheckboxList {
   display: flex;
   flex-direction: column;
@@ -955,7 +929,6 @@ table td .status-high {
   padding: 4px;
 }
 
-/* Individual User Option Card */
 .userCheckboxList > div {
   display: flex;
   align-items: center;
@@ -972,14 +945,12 @@ table td .status-high {
   user-select: none;
 }
 
-/* Hover effect */
 .userCheckboxList > div:hover {
   background: #ffffff;
   border-color: #cbd5e1;
   box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
 }
 
-/* Highlighted state when checked */
 .userCheckboxList > div:has(input:checked) {
   background: #f0fdf4;
   border-color: #a7f3d0;
@@ -987,7 +958,6 @@ table td .status-high {
   font-weight: 600;
 }
 
-/* Modern Emerald Checkbox */
 .userCheckboxList input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
@@ -1020,4 +990,106 @@ table td .status-high {
   border-left: 2px solid #ffffff;
   border-bottom: 2px solid #ffffff;
   transform: rotate(-45deg) translate(1px, -1px);
+}
+
+.alert {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  
+  min-width: 300px;
+  max-width: 90vw;
+  padding: 12px 20px;
+  
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  
+  border: 1px solid rgba(5, 150, 105, 0.2);
+  border-left: 4px solid rgb(5, 150, 105);
+  border-radius: 12px;
+  
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.1),
+              0 0 0 1px rgba(5, 150, 105, 0.05),
+              0 8px 16px -4px rgba(5, 150, 105, 0.12);
+  
+  animation: toastNotification 4.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  pointer-events: none;
+}
+
+.alert::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background-color: rgb(5, 150, 105);
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.2);
+  flex-shrink: 0;
+}
+
+@keyframes toastNotification {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -20px) scale(0.95);
+  }
+  8%, 85% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+    pointer-events: auto;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -15px) scale(0.95);
+    visibility: hidden;
+  }
+}
+
+.noData {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  margin-top: 20px;
+  background: #ffffff;
+  border: 1.5px dashed #e2e8f0;
+  border-radius: 16px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.noData:hover {
+  border-color: #cbd5e1;
+  background: #fafafa;
+}
+
+.noData::before {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  background: rgba(5, 150, 105, 0.08);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='rgb(5, 150, 105)' stroke-width='1.75'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-4.5a2 2 0 00-1.8 1.1L13 18h-2l-.7-1.9A2 2 0 008.5 13H4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 22px;
+}
+
+.noData h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #64748b;
+  letter-spacing: -0.01em;
 }

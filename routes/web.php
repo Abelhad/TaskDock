@@ -50,7 +50,7 @@ Route::post('/projectuser/{project}', [ProjectUserController::class, 'store'])
     ->middleware('auth')
     ->name('projectuser.store');
 
-Route::get('/tasks', [TaskController::class, 'index'])->middleware('auth')->name('tasks.index');
+Route::get('/tasks', [TaskController::class, 'index'])->middleware(['auth', 'admin'])->name('tasks.index');
 Route::get('/tasks.create', [TaskController::class, 'create'])->middleware('auth')->name('tasks.create');
 Route::post('tasks.store', [TaskController::class, 'store'])->middleware('auth')->name('tasks.store');
 Route::get('/tasks.mytasks', [TaskController::class, 'myTasks'])->middleware('auth')->name('tasks.mytasks');
