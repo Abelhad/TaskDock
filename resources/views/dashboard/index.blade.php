@@ -60,4 +60,162 @@
             </div>
         @endif
     </div>
+
+    @if(auth()->user()->role == 'admin')
+        <div class="AllDataContainer">
+            <div class="leftsideData">
+                <div>
+                    <h3>The Projects You Created</h3>
+                    <a href=" {{ route('projects.index') }} ">See all Project</a>
+                </div>
+                @if($projectsDsiplayed->isEmpty())
+                <div class="noData">
+                    <h3>No Tasks assigned to you yet</h3>
+                </div>
+                @else
+                    <table>
+                        <tr>
+                            <th>title</th>
+                            <th>description</th>
+                            <th>status</th>
+                        </tr>
+                        @foreach($projectsDsiplayed as $project)
+                            <tr>
+                                <td> {{ $project->title }} </td>
+                                <td> {{ $project->description }} </td>
+                                <td>
+                                    <span class="status-{{ strtolower($project->status) }}">{{ $project->status }}</span>
+                                </td>
+                                
+                            </tr>
+                        @endforeach
+                    @endif
+                </table>
+            </div>
+            <div class="rightSideData">
+                <div class="rightSideData1">
+                    <div>
+                        <h3>Your Tasks</h3>
+                        <a href=" {{ route('tasks.index') }} ">See all Tasks</a>
+                    </div>
+                    @if($tasksDisplayed->isEmpty())
+                    <div class="noData">
+                        <h3>No Tasks assigned to you yet</h3>
+                    </div>
+                    @else
+                        <table>
+                            <tr>
+                                <th>title</th>
+                                <th>priority</th>
+                                <th>status</th>
+                            </tr>
+                            @foreach($tasksDisplayed as $task)
+                                <tr>
+                                    <td> {{ $task->title }} </td>
+                                    <td>
+                                        <span class="status-{{ strtolower($task->priority) }}"> {{ $task->priority }} </span>
+                                    </td>
+                                    <td>
+                                        <span class="status-{{ strtolower($task->status) }}">{{ $task->status }}</span>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
+                    </table>
+                </div>
+        
+                
+                <div class="rightSideData2">
+                    <div>
+                        <h3>The Users You Created</h3>
+                        <a href=" {{ route('adminspace.index') }} "> See all Users</a>
+                    </div>
+                    @if($usersDisplayed->isEmpty())
+                    <div class="noData">
+                        <h3>No Tasks assigned to you yet</h3>
+                    </div>
+                    @else
+                        <table>
+                            <tr>
+                                <th>name</th>
+                                <th>email</th>
+                                <th>action</th>
+                            </tr>
+                            @foreach($usersDisplayed as $user)
+                                <tr>
+                                    <td> {{ $user->name }} </td>
+                                    <td> {{ $user->email }} </td>
+                                    <td> {{ $user->role }} </td>
+                                </tr>
+                            @endforeach
+                        @endif
+                    </table>
+                </div>
+            </div>
+        </div>
+        @else
+            <div class="AllDataContainer">
+                <div class="leftsideData">
+                    <div>
+                        <h3>The Projects You Belong To</h3>
+                        <a href=" {{ route('projects.index') }} ">See all Project</a>
+                    </div>
+                    @if($projForUserDisplayed->isEmpty())
+                    <div class="noData">
+                        <h3>No Projects Created yet</h3>
+                    </div>
+                    @else
+                        <table>
+                            <tr>
+                                <th>title</th>
+                                <th>description</th>
+                                <th>status</th>
+                            </tr>
+                            @foreach($projForUserDisplayed as $project)
+                                <tr>
+                                    <td> {{ $project->title }} </td>
+                                    <td> {{ $project->description }} </td>
+                                    <td>
+                                        <span class="status-{{ strtolower($project->status) }}">{{ $project->status }}</span>
+                                    </td>
+                                    
+                                </tr>
+                            @endforeach
+                        @endif
+                    </table>
+                </div>
+                <div class="rightSideData">
+                    <div class="rightSideData1">
+                        <div>
+                            <h3>Your Tasks</h3>
+                            <a href=" {{ route('tasks.mytasks') }} ">See all Tasks</a>
+                        </div>
+                        @if($tasksDisplayed->isEmpty())
+                        <div class="noData">
+                            <h3>No Tasks assigned to you yet</h3>
+                        </div>
+                        @else
+                            <table>
+                                <tr>
+                                    <th>title</th>
+                                    <th>priority</th>
+                                    <th>status</th>
+                                </tr>
+                                @foreach($tasksDisplayed as $task)
+                                    <tr>
+                                        <td> {{ $task->title }} </td>
+                                        <td>
+                                            <span class="status-{{ strtolower($task->priority) }}"> {{ $task->priority }} </span>
+                                        </td>
+                                        <td>
+                                            <span class="status-{{ strtolower($task->status) }}">{{ $task->status }}</span>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                        </table>
+                    </div>
+                </div>
+            </div>
+        @endif
 @endsection

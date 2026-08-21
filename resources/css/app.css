@@ -1093,3 +1093,152 @@ table td .status-high {
   color: #64748b;
   letter-spacing: -0.01em;
 }
+/* ==========================================================================
+   Dashboard Multi-Table Layout (.AllDataContainer)
+   ========================================================================== */
+
+/* Main 2-Column Responsive Grid */
+.AllDataContainer {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 24px;
+  margin-top: 24px;
+  align-items: start;
+}
+
+/* Right Side Column (Stacks the 2 sub-tables) */
+.rightSideData {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Common Card Style for all 3 panels */
+.leftsideData,
+.rightSideData1,
+.rightSideData2 {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 22px 24px;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Card Header (Title + "See all" link) */
+.leftsideData > div:first-child,
+.rightSideData1 > div:first-child,
+.rightSideData2 > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f8fafc;
+}
+
+.leftsideData h3,
+.rightSideData1 h3,
+.rightSideData2 h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+/* "See all" Action Links */
+.leftsideData > div:first-child a,
+.rightSideData1 > div:first-child a,
+.rightSideData2 > div:first-child a {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: rgb(5, 150, 105);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.leftsideData > div:first-child a:hover,
+.rightSideData1 > div:first-child a:hover,
+.rightSideData2 > div:first-child a:hover {
+  color: rgb(15, 118, 110);
+  transform: translateX(2px);
+}
+
+/* Flat, Borderless Tables */
+.leftsideData table,
+.rightSideData1 table,
+.rightSideData2 table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Table Header Row */
+.leftsideData th,
+.rightSideData1 th,
+.rightSideData2 th {
+  background: transparent;
+  color: #94a3b8;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  padding: 10px 12px;
+  border-bottom: 1px solid #f1f5f9;
+  text-align: left;
+}
+
+/* Table Data Rows */
+.leftsideData td,
+.rightSideData1 td,
+.rightSideData2 td {
+  padding: 12px;
+  font-size: 0.85rem;
+  color: #334155;
+  border-bottom: 1px solid #f8fafc;
+  vertical-align: middle;
+}
+
+/* Emphasize Title/Name in First Column */
+.leftsideData td:first-child,
+.rightSideData1 td:first-child,
+.rightSideData2 td:first-child {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* Truncate long descriptions gracefully */
+.leftsideData td:nth-child(2) {
+  color: #64748b;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Remove bottom border on last row */
+.leftsideData tr:last-child td,
+.rightSideData1 tr:last-child td,
+.rightSideData2 tr:last-child td {
+  border-bottom: none;
+}
+
+/* Subtle Row Hover */
+.leftsideData tbody tr:hover td,
+.rightSideData1 tbody tr:hover td,
+.leftsideData tr:hover td,
+.rightSideData1 tr:hover td,
+.rightSideData2 tr:hover td {
+  background-color: #fafbfc;
+}
+
+/* Responsive Collapse on smaller screens */
+@media (max-width: 1024px) {
+  .AllDataContainer {
+    grid-template-columns: 1fr;
+  }
+}
