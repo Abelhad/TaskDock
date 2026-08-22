@@ -13,7 +13,11 @@ class ProjectController extends Controller
     public function index()
     {
         //
-        $projects = auth()->user()->projects;
+        if(auth()->user()->role == 'admin'){
+            $projects = auth()->user()->projects;
+        }else{
+            $projects = auth()->user()->teamProjects;
+        }
         return view('projects.index', compact('projects'));
     }
 
