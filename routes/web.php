@@ -38,19 +38,19 @@ require __DIR__.'/auth.php';
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/projects', [ProjectController::class, 'index'])->middleware('auth')->name('projects.index');
-Route::get('/projects/create', [ProjectController::class, 'create'])->middleware('auth')->name('projects.create');
-Route::post('/projects', [ProjectController::class, 'store'])->middleware('auth')->name('projects.store');
+Route::get('/projects/create', [ProjectController::class, 'create'])->middleware(['auth', 'admin'])->name('projects.create');
+Route::post('/projects', [ProjectController::class, 'store'])->middleware(['auth', 'admin'])->name('projects.store');
 
-Route::get('/adminspace', [AdminCreatedUserController::class, 'index'])->middleware('auth')->name('adminspace.index');
-Route::get('/adminspace/create', [AdminCreatedUserController::class, 'create'])->middleware('auth')->name('adminspace.create');
-Route::post('/adminspace', [AdminCreatedUserController::class, 'store'])->middleware('auth')->name('adminspace.store');
+Route::get('/adminspace', [AdminCreatedUserController::class, 'index'])->middleware(['auth', 'admin'])->name('adminspace.index');
+Route::get('/adminspace/create', [AdminCreatedUserController::class, 'create'])->middleware(['auth', 'admin'])->name('adminspace.create');
+Route::post('/adminspace', [AdminCreatedUserController::class, 'store'])->middleware(['auth', 'admin'])->name('adminspace.store');
 
-Route::get('/projectuser/{project}/create', [ProjectUserController::class, 'create'])->middleware('auth')->name('projectuser.create');
+Route::get('/projectuser/{project}/create', [ProjectUserController::class, 'create'])->middleware(['auth', 'admin'])->name('projectuser.create');
 Route::post('/projectuser/{project}', [ProjectUserController::class, 'store'])
-    ->middleware('auth')
+    ->middleware(['auth', 'admin'])
     ->name('projectuser.store');
 
 Route::get('/tasks', [TaskController::class, 'index'])->middleware(['auth', 'admin'])->name('tasks.index');
-Route::get('/tasks.create', [TaskController::class, 'create'])->middleware('auth')->name('tasks.create');
-Route::post('tasks.store', [TaskController::class, 'store'])->middleware('auth')->name('tasks.store');
+Route::get('/tasks.create', [TaskController::class, 'create'])->middleware(['auth', 'admin'])->name('tasks.create');
+Route::post('tasks.store', [TaskController::class, 'store'])->middleware(['auth', 'admin'])->name('tasks.store');
 Route::get('/tasks.mytasks', [TaskController::class, 'myTasks'])->middleware('auth')->name('tasks.mytasks');
