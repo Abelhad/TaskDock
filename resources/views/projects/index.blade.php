@@ -79,6 +79,7 @@
                                 <button type="submit">Delete</button>
                             </form>
                             <a href="{{ route('projectuser.create', ['project' => $project->id]) }}" >assign users</a>
+                            <a href=" {{ route('projectuser.unassignUsers', ['project' => $project->id]) }} ">unassign users</a>
                         </td>
                     </tr>
                 @endforeach

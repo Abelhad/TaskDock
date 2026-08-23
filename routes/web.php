@@ -54,6 +54,12 @@ Route::get('/projectuser/{project}/create', [ProjectUserController::class, 'crea
 Route::post('/projectuser/{project}', [ProjectUserController::class, 'store'])
     ->middleware(['auth', 'admin'])
     ->name('projectuser.store');
+Route::get('/projectuser/{project}/unassignUsers', [ProjectUserController::class, 'unassignUsers'])
+    ->middleware(['auth', 'admin'])
+    ->name('projectuser.unassignUsers');
+Route::delete('/projectuser/{project}/unassign', [ProjectUserController::class, 'destroy'])
+    ->middleware(['auth', 'admin'])
+    ->name('projectuser.unassign');
 
 Route::get('/tasks', [TaskController::class, 'index'])->middleware(['auth', 'admin'])->name('tasks.index');
 Route::get('/tasks.create', [TaskController::class, 'create'])->middleware(['auth', 'admin'])->name('tasks.create');

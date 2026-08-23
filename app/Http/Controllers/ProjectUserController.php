@@ -65,11 +65,21 @@ class ProjectUserController extends Controller
         //
     }
 
+    public function unassignUsers(Project $project){
+        $assignedusers = $project->members;
+        return view('projectUser.unassignUsers', compact('project', 'assignedusers'));
+    }
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, Project $project)
     {
         //
+        $request->validate([
+            'users' => 'required|array',
+            'users.*' => 'exists:users,id',
+        ]);
+        $project->members()->detach($request->users);
+        return redirect()->route('projects.index');
     }
 }

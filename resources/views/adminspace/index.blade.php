@@ -47,16 +47,16 @@
             </div>
             <table>
                 <tr>
-                    <th>id</th>
                     <th>name</th>
                     <th>email</th>
+                    <th>role</th>
                     <th>action</th>
                 </tr>
                 @foreach($users as $user)
                     <tr>
-                        <td>{{ $user->id }}</td>
                         <td> {{ $user->name }} </td>
                         <td> {{ $user->email }} </td>
+                        <td> {{ $user->role }} </td>
                         <td>
                             <a href="">Modify</a>
                             <form action="" method="post">
