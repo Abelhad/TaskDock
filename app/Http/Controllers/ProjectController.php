@@ -70,9 +70,21 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Project $project)
     {
         //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'status' => 'required|in:active,completed,archived',
+        ]);
+        $project->update([
+            'user_id' => auth()->id(),
+            'title' => $request->title,
+            'description' => $request->description,
+            'status' => $request->status,
+        ]);
+        return redirect()->route('projects.index');
     }
 
     /**

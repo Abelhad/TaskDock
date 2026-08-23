@@ -41,6 +41,10 @@ Route::get('/projects', [ProjectController::class, 'index'])->middleware('auth')
 Route::get('/projects/create', [ProjectController::class, 'create'])->middleware(['auth', 'admin'])->name('projects.create');
 Route::post('/projects', [ProjectController::class, 'store'])->middleware(['auth', 'admin'])->name('projects.store');
 Route::delete('projects/{project}', [ProjectController::class, 'destroy'])->middleware(['auth', 'admin'])->name('projects.destroy');
+Route::get('/projects/{project}/edit', [ProjectController::class, 'edit'])
+    ->name('projects.edit');
+Route::put('/projects/{project}', [ProjectController::class, 'update'])
+    ->name('projects.update');
 
 Route::get('/adminspace', [AdminCreatedUserController::class, 'index'])->middleware(['auth', 'admin'])->name('adminspace.index');
 Route::get('/adminspace/create', [AdminCreatedUserController::class, 'create'])->middleware(['auth', 'admin'])->name('adminspace.create');

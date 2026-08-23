@@ -5,9 +5,9 @@
     <div class="adminForm">
         <h2>Create New User</h2>
         <h3>Add a user account to the TaskDock workspace</h3>
-        <form action="{{ route('projects.update') }}" method="post">
+        <form action="{{ route('projects.update', $project) }}" method="post">
             @csrf
-    
+            @method('PUT')
             <div class="form-group">
                 <x-input-label for="title" :value="__('Title')" class="form-label" />
 
