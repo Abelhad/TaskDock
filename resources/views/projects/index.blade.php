@@ -73,7 +73,9 @@
                         </td>
                         <td>
                             <a href="">Modify</a>
-                            <form action="" method="post">
+                            <form action="{{ route('projects.destroy', $project) }}" method="post">
+                                @csrf
+                                @method('DELETE')
                                 <button type="submit">Delete</button>
                             </form>
                             <a href="{{ route('projectuser.create', ['project' => $project->id]) }}" >assign users</a>
