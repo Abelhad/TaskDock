@@ -59,7 +59,9 @@
                         <td> {{ $user->role }} </td>
                         <td>
                             <a href="">Modify</a>
-                            <form action="" method="post">
+                            <form action="{{ route('adminspace.destroy', $user) }}" method="post">
+                                @csrf
+                                @method('DELETE')
                                 <button type="submit">Delete</button>
                             </form>
                         </td>
