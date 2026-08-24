@@ -44,7 +44,6 @@
                 />
             </div>
 
-            <!-- Status -->
             <div class="form-group">
                 <x-input-label for="status" :value="__('Status')" class="form-label" />
 

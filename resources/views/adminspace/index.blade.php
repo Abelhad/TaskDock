@@ -58,7 +58,7 @@
                         <td> {{ $user->email }} </td>
                         <td> {{ $user->role }} </td>
                         <td>
-                            <a href="">Modify</a>
+                            <a href=" {{ route('adminspace.edit', $user) }} ">Modify</a>
                             <form action="{{ route('adminspace.destroy', $user) }}" method="post">
                                 @csrf
                                 @method('DELETE')

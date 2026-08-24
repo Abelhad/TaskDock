@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 
 
@@ -56,7 +57,7 @@ class AdminCreatedUserController extends Controller
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'role' => 'user',
+            'role' => $request->role,
             'created_by' => auth()->id(),
             'password' => Hash::make($request->password)
         ]);
@@ -75,17 +76,30 @@ class AdminCreatedUserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
         //
+        return view('adminspace.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
         //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'password' => ['nullable', 'confirmed', Rules\Password::Default()]
+        ]);
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'role' => $request->role,
+            'password' => $request->password ? Hash::make($request->password) : $user->password
+        ]);
+        return redirect()->route('adminspace.index');
     }
 
     /**

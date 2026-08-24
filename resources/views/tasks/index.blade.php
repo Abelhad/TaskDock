@@ -80,7 +80,9 @@
                         </td>
                         <td>
                             <a href="">Modify</a>
-                            <form action="" method="post">
+                            <form action=" {{ route('tasks.destroy', $task) }} " method="post">
+                                @csrf
+                                @method('DELETE')
                                 <button type="submit">Delete</button>
                             </form>
                         </td>

@@ -1,14 +1,14 @@
 @extends('layouts.dashboard')
-@section('page-title', 'Create User')
+@section('page-title', 'Modify User')
 
 @section('content')
 <div class="">
     <div class="adminForm">
-        <h2>Create New User</h2>
-        <h3>Add a user account to the TaskDock workspace</h3>
-        <form action="{{ route('adminspace.store') }}" method="post">
+        <h2>Edit User</h2>
+        <h3>Update this user account in the TaskDock workspace</h3>
+        <form action="{{ route('adminspace.update', $user) }}" method="post">
             @csrf
-    
+            @method('PUT')
             <div class="form-group">
                 <x-input-label for="name" :value="__('Name')" class="form-label" />
     
@@ -17,7 +17,7 @@
                     class="form-input"
                     type="text"
                     name="name"
-                    :value="old('name')"
+                    :value="$user->name"
                     required
                     autofocus
                     autocomplete="name"
@@ -37,7 +37,7 @@
                     class="form-input"
                     type="email"
                     name="email"
-                    :value="old('email')"
+                    :value="$user->email"
                     required
                     autocomplete="username"
                 />
@@ -56,7 +56,6 @@
                     class="form-input"
                     type="password"
                     name="password"
-                    required
                     autocomplete="new-password"
                 />
     
@@ -78,7 +77,6 @@
                     class="form-input"
                     type="password"
                     name="password_confirmation"
-                    required
                     autocomplete="new-password"
                 />
     
@@ -96,11 +94,11 @@
                     name="role"
                     class="form-input"
                 >
-                    <option value="admin" {{ old('role', 'admin') === 'admin' ? 'selected' : '' }}>
+                    <option value="admin" {{ old('role', $user->role) === 'admin' ? 'selected' : '' }}>
                         admin
                     </option>
 
-                    <option value="user" {{ old('role') === 'user' ? 'selected' : '' }}>
+                    <option value="user" {{ old('role', $user->role) === 'user' ? 'selected' : '' }}>
                         user
                     </option>
                 </select>
@@ -112,7 +110,7 @@
             </div>
     
             <div class="form-actions">
-                <button type="submit" class="register-button">Create User</button>
+                <button type="submit" class="register-button">Edit User</button>
             </div>
     
         

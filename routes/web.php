@@ -50,6 +50,8 @@ Route::get('/adminspace', [AdminCreatedUserController::class, 'index'])->middlew
 Route::get('/adminspace/create', [AdminCreatedUserController::class, 'create'])->middleware(['auth', 'admin'])->name('adminspace.create');
 Route::post('/adminspace', [AdminCreatedUserController::class, 'store'])->middleware(['auth', 'admin'])->name('adminspace.store');
 Route::delete('/adminspace/{user}', [AdminCreatedUserController::class, 'destroy'])->middleware(['auth', 'admin'])->name('adminspace.destroy');
+Route::get('/adminspace/{user}/edit', [AdminCreatedUserController::class, 'edit'])->middleware(['auth', 'admin'])->name('adminspace.edit');
+Route::put('/adminspace/{user}', [AdminCreatedUserController::class, 'update'])->middleware(['auth', 'admin'])->name('adminspace.update');
 
 Route::get('/projectuser/{project}/create', [ProjectUserController::class, 'create'])->middleware(['auth', 'admin'])->name('projectuser.create');
 Route::post('/projectuser/{project}', [ProjectUserController::class, 'store'])
@@ -66,3 +68,4 @@ Route::get('/tasks', [TaskController::class, 'index'])->middleware(['auth', 'adm
 Route::get('/tasks.create', [TaskController::class, 'create'])->middleware(['auth', 'admin'])->name('tasks.create');
 Route::post('tasks.store', [TaskController::class, 'store'])->middleware(['auth', 'admin'])->name('tasks.store');
 Route::get('/tasks.mytasks', [TaskController::class, 'myTasks'])->middleware('auth')->name('tasks.mytasks');
+Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->middleware(['auth', 'admin'])->name('tasks.destroy');
