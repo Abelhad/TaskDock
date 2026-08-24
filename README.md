@@ -1,66 +1,140 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# TaskDock
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+TaskDock is a task and project management web application built with Laravel.
 
-## About Laravel
+It allows administrators to manage users, projects, and tasks, while team members can view the projects they belong to and the tasks assigned to them.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+![TaskDock Dashboard](screenshots/dashboard.png)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📌 About The Project
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+I built TaskDock as a practical Laravel project to strengthen my backend and full-stack development skills.
 
-## Learning Laravel
+The project focuses on authentication, role-based access control, CRUD operations, database relationships, task assignment, validation, and building a structured Laravel application from scratch.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## ✨ Features
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 🔐 Authentication
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- User registration and login
+- User logout
+- Authentication using Laravel Breeze
+- Protected routes using authentication middleware
+- Password hashing
+- Password confirmation
+- Form validation
 
-## Laravel Sponsors
+### 👥 Role-Based Access Control
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+TaskDock has two user roles:
 
-### Premium Partners
+**Admin**
+- Create and manage users
+- Create and manage projects
+- Create and manage tasks
+- Assign users to projects
+- Unassign users from projects
+- Assign tasks to team members
+- Manage user roles
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+**User**
+- View projects they belong to
+- View their assigned tasks
+- View task information
+- Track their tasks and due dates
 
-## Contributing
+Admin-only pages and actions are protected using custom middleware.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 📁 Project Management
 
-## Code of Conduct
+- Create projects
+- Edit projects
+- Delete projects
+- Manage project status
+- View projects created by the admin
+- View projects a user belongs to
+- Assign team members to projects
+- Unassign team members from projects
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### ✅ Task Management
 
-## Security Vulnerabilities
+- Create tasks
+- Edit tasks
+- Delete tasks
+- Assign tasks to users
+- Leave tasks unassigned
+- Set task priority
+- Set task status
+- Set due dates
+- Track overdue tasks
+- View all created tasks
+- View personal tasks
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 📊 Dashboard
 
-## License
+The dashboard changes depending on the user's role.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+#### Admin Dashboard
+
+- Total projects
+- Total users
+- Total tasks
+- Recently created projects
+- Recently created users
+- Recently created tasks
+
+#### User Dashboard
+
+- Total personal tasks
+- Projects the user belongs to
+- Overdue tasks
+- Personal task information
+
+## 🗄️ Database Relationships
+
+TaskDock uses Laravel Eloquent relationships to connect users, projects, and tasks.
+
+### User & Projects
+
+A user can create multiple projects.
+
+A user can also belong to multiple projects as a team member.
+
+This means there are two different relationships:
+
+- **Project ownership:** a user owns/creates projects
+- **Team membership:** a user can be a member of other projects
+
+The team membership is handled through a many-to-many relationship and a `project_user` pivot table.
+
+### User & Tasks
+
+A user can have multiple tasks assigned to them.
+
+Users can also create multiple tasks.
+
+This allows the application to distinguish between:
+
+- The user who created a task
+- The user assigned to the task
+
+### Project & Tasks
+
+A project can contain multiple tasks.
+
+Each task belongs to one project.
+
+### Relationship Overview
+
+```text
+User
+│
+├── Creates → Projects
+│
+├── Belongs to → Projects (team members)
+│
+├── Creates → Tasks
+│
+└── Is assigned → Tasks
+        │
+        └── Belongs to → Project

@@ -74,15 +74,6 @@
         <!-- Actions -->
         <div class="form-actions">
 
-            @if (Route::has('password.request'))
-                <a
-                    href="{{ route('password.request') }}"
-                    class="forgot-link"
-                >
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
             <button type="submit" class="login-button">
                 {{ __('Log in') }}
             </button>

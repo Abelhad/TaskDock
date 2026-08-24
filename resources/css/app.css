@@ -653,6 +653,7 @@ table td .status-high {
   border: 1px solid #d6ebe5;
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
   margin-top: 24px;
+  overflow-x: auto;
 }
 
 .usersCreatedContent > div {

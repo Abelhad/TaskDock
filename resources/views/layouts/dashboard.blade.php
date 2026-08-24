@@ -27,7 +27,10 @@
         </div>
         <div class="rightSide">
             <div class="header">
-                <button>logout</button>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit">Logout</button>
+                </form>
             </div>
             <div class="content">
                 <h2>TaskDock <span id="titleColor">> @yield('page-title')</span></h2>
