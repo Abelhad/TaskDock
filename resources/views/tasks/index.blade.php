@@ -79,7 +79,7 @@
                             <span class="status-{{ strtolower($task->status) }}">{{ $task->status }}</span>
                         </td>
                         <td>
-                            <a href="">Modify</a>
+                            <a href=" {{ route('tasks.edit', $task) }} ">Modify</a>
                             <form action=" {{ route('tasks.destroy', $task) }} " method="post">
                                 @csrf
                                 @method('DELETE')

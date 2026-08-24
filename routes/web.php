@@ -69,3 +69,5 @@ Route::get('/tasks.create', [TaskController::class, 'create'])->middleware(['aut
 Route::post('tasks.store', [TaskController::class, 'store'])->middleware(['auth', 'admin'])->name('tasks.store');
 Route::get('/tasks.mytasks', [TaskController::class, 'myTasks'])->middleware('auth')->name('tasks.mytasks');
 Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->middleware(['auth', 'admin'])->name('tasks.destroy');
+Route::get('/tasks/{task}/edit', [TaskController::class, 'edit'])->middleware(['auth', 'admin'])->name('tasks.edit');
+Route::put('/tasks/{task}', [TaskController::class, 'update'])->middleware(['auth', 'admin'])->name('tasks.update');

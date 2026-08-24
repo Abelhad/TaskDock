@@ -85,17 +85,40 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Task $task)
     {
         //
+        $admin_id = auth()->user()->id;
+        $users = auth()->user()->createdUsers;
+        $projects = auth()->user()->projects;
+        return view('tasks.edit', compact('task', 'users', 'projects', 'admin_id'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Task $task)
     {
         //
+        $request->validate([
+            'project_id' => 'required|exists:projects,id',
+            'assigned_to' => 'nullable|exists:users,id',
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'priority' => 'required|in:low,medium,high',
+            'status' => 'required|in:pending,in_progress,completed',
+            'due_date' => 'nullable|date',
+        ]);
+        $task->update([
+            'project_id' => $request->project_id,
+            'assigned_to' => $request->assigned_to,
+            'title' => $request->title,
+            'description' => $request->description,
+            'priority' => $request->priority,
+            'status' => $request->status,
+            'due_date' => $request->due_date,
+        ]);
+        return redirect()->route('tasks.index');
     }
 
     /**
