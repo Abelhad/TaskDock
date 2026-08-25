@@ -11,7 +11,11 @@
         {{-- Page Header --}}
         <div class="pageHeader">
             <div>
-                <p>Manage and keep track of all the projects you created.</p>
+                @if(auth()->user()->role == 'admin')
+                    <p>Manage and keep track of all the projects you created.</p>
+                @else
+                    <p>View and keep track of the projects created by the admin.</p>
+                @endif
             </div>
 
             <a href="{{ route('projects.create') }}" class="addProjectBtn">
@@ -57,7 +61,6 @@
             @endif
             <table>
                 <tr>
-                    <th>id</th>
                     <th>title</th>
                     <th>description</th>
                     <th>status</th>
@@ -65,7 +68,6 @@
                 </tr>
                 @foreach($projects as $project)
                     <tr>
-                        <td>{{ $project->id }}</td>
                         <td> {{ $project->title }} </td>
                         <td> {{ $project->description }} </td>
                         <td>

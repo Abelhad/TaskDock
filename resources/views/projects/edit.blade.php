@@ -3,8 +3,8 @@
 
 @section('content')
     <div class="adminForm">
-        <h2>Create New User</h2>
-        <h3>Add a user account to the TaskDock workspace</h3>
+        <h2>Edit Project</h2>
+        <h3>Update the project details in the TaskDock workspace</h3>
         <form action="{{ route('projects.update', $project) }}" method="post">
             @csrf
             @method('PUT')

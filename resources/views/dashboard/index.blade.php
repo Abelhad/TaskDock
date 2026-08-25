@@ -9,7 +9,11 @@
     @endif
     <div class="pageHeader">
         <div>
-            <p>Manage and keep track of all the projects you created.</p>
+            @if(auth()->user()->role == 'admin')
+                <p>Manage and keep track of all the projects you created.</p>
+            @else
+                <p>Check your tasks, projects, and important stats at a glance.</p>
+            @endif
         </div>
 
         <div>
@@ -157,7 +161,7 @@
             <div class="AllDataContainer">
                 <div class="leftsideData">
                     <div>
-                        <h3>The Projects You Belong To</h3>
+                        <h3>Projects You Belong To</h3>
                         <a href=" {{ route('projects.index') }} ">See all Project</a>
                     </div>
                     @if($projForUserDisplayed->isEmpty())

@@ -5,7 +5,7 @@
 
    <div class="pageHeader">
         <div>
-            <p>Manage and keep track of all the tasks you created.</p>
+            <p>View your tasks and keep track of their progress.</p>
         </div>
 
         <a href="{{ route('tasks.create') }}" class="addProjectBtn">
