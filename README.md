@@ -5,7 +5,7 @@ TaskDock is a task and project management web application built with Laravel.
 It allows administrators to manage users, projects, and tasks, while team members can view the projects they belong to and the tasks assigned to them.
 
 ![TaskDock Dashboard](screenshots/dashboard.png)
-![TaskDock Dashboard](screenshots/projectsPage.png)
+![TaskDock Dashboard](screenshots/tasks.png.png)
 
 ## 📌 About The Project
 
